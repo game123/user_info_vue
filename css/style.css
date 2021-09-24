@@ -91,6 +91,13 @@ body {
   list-style-position: inside;
 }
 
+.data-content input {
+  padding: 10px 6px;
+  font-size: 1em;
+  margin-bottom: 1em;
+  margin-right: 0.5rem;
+}
+
 .data-content button {
   padding: 10px 24px;
   border-radius: 4px;

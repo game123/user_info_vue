@@ -14,7 +14,7 @@
 
 <body>
     <div id="vue-app">
-        <div class="grid-container">
+        <input class="grid-container">
             <header class="header-title">
                 <h1>{{ navTitle }}</h1>
             </header>
@@ -26,8 +26,20 @@
                     <li>Contact</li>
                 </ul>
             </nav>
-
+                    
             <div class="data-content">
+                <div class="add-user-input">
+                    <input 
+                        type="text" 
+                        v-model="newUser" 
+                        placeholder="Enter new user...">
+                    </input>
+                    <input 
+                        type="submit" 
+                        value="Add User"
+                        v-on:click="addNewUser(newUser)">
+                    </input>
+                </div>
                 <button v-on:click="changeDisplay">Display Users!</button>
                 <h1>List of Users:</h1>
                 <br>
@@ -67,7 +79,16 @@
             methods: {
                 changeDisplay() {
                     this.displayUsers = !this.displayUsers;
-                }
+                },
+                addNewUser(newUserInput) {
+                    if (newUserInput !== '') {
+                        // Add the user to the local array of users
+                        this.users.push(newUserInput);
+                        // Clear the value of the new user's name
+                        this.newUser = ''; // NEW!
+
+                    }
+                },
             }
         });
 
