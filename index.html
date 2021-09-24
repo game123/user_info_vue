@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue CRUD</title>
+    <!--  Local CSS file for styling the application -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    
+</head>
+
+<body>
+    <div id="vue-app">
+        <div class="grid-container">
+            <header class="header-title">
+                <h1>{{ navTitle }}</h1>
+            </header>
+
+            <nav class="navigation-links">
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+
+            <div class="data-content">
+                <button v-on:click="changeDisplay">Display Users!</button>
+                <h1>List of Users:</h1>
+                <br>
+                <div v-if="!displayUsers">
+                    <h4>Users are not being displayed.</h4>
+                </div>
+                <div v-else>
+                    <ul v-if="displayUsers" v-for="(user, index) in users" v-bind:key="user">
+                        <li>{{ index }}: {{ user }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <h4>{{ footerMessage }}</h4>
+            </footer>
+        </div>
+    </div>
+    <!-- VueJS Code -->
+    <script type="text/javascript">
+        const app = Vue.createApp({
+            data() {
+                return {
+                    navTitle: 'Vue Course',
+                    footerMessage: 'testdriven.io (2021)',
+                    users: [
+                        'user1',
+                        'employee17',
+                        'Bob',
+                        'Sara',
+                        'Garfield',
+                    ],
+                    newUser: '',
+                    displayUsers: false,
+                }
+            },
+            methods: {
+                changeDisplay() {
+                    this.displayUsers = !this.displayUsers;
+                }
+            }
+        });
+
+        const mountedApp = app.mount('#vue-app')
+    </script>
+</body>
+
+
+</html>
