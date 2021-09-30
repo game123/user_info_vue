@@ -40,17 +40,27 @@
                         v-on:click="addNewUser(newUser)">
                     </input>
                 </div>
-                <button v-on:click="changeDisplay">Display Users!</button>
-                <h1>List of Users:</h1>
                 <br>
-                <div v-if="!displayUsers">
-                    <h4>Users are not being displayed.</h4>
+                <h1>List of Users:</h1>
+                <br>    
+                <ul v-for="(user, index) in users" v-bind:key="user">
+                    <li>{{ index }}: {{ user }}</li>
+                </ul>
+                <br>
+                <h4>{{ numberOfusersText }}</h4>
+                <br>
+                <h1>Search Users:</h1>
+                <br>
+                <h1>Search Users:</h1>
+                <br>
+                <div class="search-user-input">
+                    <label for="searchInput">Search for: </label>
+                    <input type="text" id="searchInput" v-model="searchName"></input>
                 </div>
-                <div v-else>
-                    <ul v-if="displayUsers" v-for="(user, index) in users" v-bind:key="user">
-                        <li>{{ index }}: {{ user }}</li>
-                    </ul>
-                </div>
+                <br>
+                <ul v-for="user in searchResults" v-bind:key="user">  <!-- NEW! -->
+                    <li>{{ user }}</li>                               <!-- NEW! -->
+                </ul>  
             </div>
 
             <footer class="footer">
@@ -74,6 +84,14 @@
                     ],
                     newUser: '',
                     displayUsers: false,
+                    searchName: '',
+                    usersTextColor: [
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                    ],
                 }
             },
             methods: {
@@ -89,6 +107,18 @@
 
                     }
                 },
+            },
+            computed: {
+                numberOfUsersText() {
+                    return 'There are ' + this.users.length + ' users.';
+                },
+                searchResults() {
+                    if (this.searchName != '') {
+                        return this.users.filter(el => el.match(this.searchName))
+                    } else {
+                        return '';
+                    }
+                }
             }
         });
 

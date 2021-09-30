@@ -107,6 +107,16 @@ body {
   cursor: pointer;
 }
 
+.data-content input[type="text"]:focus {
+  border-color: #333;
+}
+
+.data-content input[type="submit"] {
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 /* Footer Styling
 *****************/
 .footer {
